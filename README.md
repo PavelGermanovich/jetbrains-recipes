@@ -49,7 +49,7 @@ After recipe creation, its id returned
     "id": 1
 }
 
-## Get existing request
+## Get existing recipe
 ### Request
 
 `GET /api/recipe/{id}`
@@ -57,6 +57,7 @@ After recipe creation, its id returned
 ### Response
 
 If recipe not found, HTTP 404 returned.
+
       {
           "name": "first recipe",
           "category": "category",
@@ -73,4 +74,53 @@ If recipe not found, HTTP 404 returned.
           ]
       }
       
+
+## Delete recipe
+### Request
+
+`DELETE /api/recipe/{id}`
+
+### Response
+If user logged in not the user which created recipe -> HTTP status 403 FORBIDDEN returned.
+If recipe is not found 404 HTTPS STATUS (NOT FOUND).
+If recipe successfully removed -> 204 HTTP returned.
+
+## Update recipe
+### Request
+
+`PUT /api/recipe/{id}`
+
+      {
+          "name": "updated recipe",
+          "category": "category",
+          "date": "2022-12-22T16:55:10.075253",
+          "description": "recipe description",
+          "ingredients": [
+              "first ingredient",
+              "second ingredient",
+              "3rd ingredient"
+          ],
+          "directions": [
+              "add solt",
+              "add milk"
+          ]
+      }
       
+### Response
+If recipe does not exist -> HTTP 404 NOT FOUND
+
+If recipe author and user logged in don`t match -> 403 FORBIDDEN
+
+If recipe updated -> 204 NO content.
+
+
+## Get recipe recipe
+### Request
+
+`GET /api/recipe/search`
+@RequestParam(required = false, name = "category") OR
+@RequestParam(required = false, name = "name")
+
+### Response
+Return array of recipes found by category or name request param.
+
