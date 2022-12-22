@@ -3,7 +3,6 @@ package jetbrains.recipes.service;
 import jetbrains.recipes.model.Recipe;
 import jetbrains.recipes.repository.RecipeRepository;
 import jetbrains.recipes.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,11 +12,11 @@ import java.util.Optional;
 @Service
 public class RecipeImpl implements RecipeService {
     private final RecipeRepository recipeRepository;
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    public RecipeImpl(RecipeRepository recipeRepository) {
+    public RecipeImpl(RecipeRepository recipeRepository, UserRepository userRepository) {
         this.recipeRepository = recipeRepository;
+        this.userRepository = userRepository;
     }
 
     @Override

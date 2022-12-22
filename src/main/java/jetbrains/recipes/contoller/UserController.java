@@ -2,7 +2,6 @@ package jetbrains.recipes.contoller;
 
 import jetbrains.recipes.model.User;
 import jetbrains.recipes.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,11 +13,13 @@ import javax.validation.Valid;
 
 @RestController
 public class UserController {
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder encoder;
 
-    @Autowired
-    PasswordEncoder encoder;
+    public UserController(UserRepository userRepository, PasswordEncoder encoder) {
+        this.userRepository = userRepository;
+        this.encoder = encoder;
+    }
 
     @PostMapping("/api/register")
     public ResponseEntity<?> registerUser(@RequestBody @Valid User user) {
