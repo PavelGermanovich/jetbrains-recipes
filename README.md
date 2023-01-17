@@ -124,3 +124,12 @@ If recipe updated -> 204 NO content.
 ### Response
 Return array of recipes found by category or name request param.
 
+
+## Project can run in Docker, scripts provided. 
+### create-image-plugin.sh 
+create docker image using gradle plugin, no dockerfile needed,
+after image build execute run-container.sh, specify image name from the image build script
+
+### create-image-manual.sh
+create-image-manual.sh building image using Dockerfile in the project.
+After this image can run using run-container.sh

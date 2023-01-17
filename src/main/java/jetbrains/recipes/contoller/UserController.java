@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Map;
 
 @RestController
 public class UserController {
@@ -24,7 +25,7 @@ public class UserController {
     @PostMapping("/api/register")
     public ResponseEntity<?> registerUser(@RequestBody @Valid User user) {
         if (userRepository.findByEmail(user.getEmail()) != null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(Map.of("message", "User already exists"), HttpStatus.BAD_REQUEST);
         } else {
             user.setPassword(encoder.encode(user.getPassword()));
             userRepository.save(user);

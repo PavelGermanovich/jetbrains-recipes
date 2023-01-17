@@ -18,6 +18,7 @@ repositories {
 	mavenCentral()
 }
 
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -29,6 +30,9 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+	testImplementation group: 'io.rest-assured', name: 'rest-assured'
+	testImplementation group: 'junit', name: 'junit'
+	testImplementation group: 'io.rest-assured', name: 'spring-mock-mvc', version: '5.2.1'
 }
 
 tasks.named('test') {
